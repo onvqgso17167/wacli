@@ -126,3 +126,7 @@ pnpm -s wacli -- --json chats list --limit 100000 \
 ## License
 
 See `LICENSE`.
+
+## Maintainers
+- Created by [@steipete](https://github.com/steipete)
+- Currently maintained by [@dinakars777](https://github.com/dinakars777)
