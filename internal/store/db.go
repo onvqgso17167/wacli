@@ -3,11 +3,11 @@ package store
 import (
 	"database/sql"
 	"fmt"
-	"os"
 	"path/filepath"
 	"strings"
 
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/steipete/wacli/internal/fsutil"
 	"github.com/steipete/wacli/internal/sqliteutil"
 )
 
@@ -25,7 +25,7 @@ func Open(path string) (*DB, error) {
 	if strings.ContainsAny(path, "?#") {
 		return nil, fmt.Errorf("db path must not contain '?' or '#'")
 	}
-	if err := os.MkdirAll(filepath.Dir(path), 0o700); err != nil {
+	if err := fsutil.EnsurePrivateDir(filepath.Dir(path)); err != nil {
 		return nil, fmt.Errorf("create db directory: %w", err)
 	}
 

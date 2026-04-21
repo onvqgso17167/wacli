@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+
+	"github.com/steipete/wacli/internal/fsutil"
 )
 
 type Lock struct {
@@ -14,7 +16,7 @@ type Lock struct {
 }
 
 func Acquire(storeDir string) (*Lock, error) {
-	if err := os.MkdirAll(storeDir, 0700); err != nil {
+	if err := fsutil.EnsurePrivateDir(storeDir); err != nil {
 		return nil, fmt.Errorf("create store dir: %w", err)
 	}
 	path := filepath.Join(storeDir, "LOCK")

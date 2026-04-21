@@ -3,10 +3,10 @@ package app
 import (
 	"context"
 	"fmt"
-	"os"
 	"path/filepath"
 	"time"
 
+	"github.com/steipete/wacli/internal/fsutil"
 	"github.com/steipete/wacli/internal/store"
 	"github.com/steipete/wacli/internal/wa"
 	"go.mau.fi/whatsmeow"
@@ -64,7 +64,7 @@ func New(opts Options) (*App, error) {
 	if opts.StoreDir == "" {
 		return nil, fmt.Errorf("store dir is required")
 	}
-	if err := os.MkdirAll(opts.StoreDir, 0700); err != nil {
+	if err := fsutil.EnsurePrivateDir(opts.StoreDir); err != nil {
 		return nil, fmt.Errorf("create store dir: %w", err)
 	}
 

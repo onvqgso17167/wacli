@@ -12,6 +12,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/steipete/wacli/internal/fsutil"
 	"github.com/steipete/wacli/internal/pathutil"
 	"github.com/steipete/wacli/internal/store"
 )
@@ -143,7 +144,7 @@ func (a *App) downloadMediaJob(ctx context.Context, job mediaJob) error {
 	if err != nil {
 		return err
 	}
-	if err := os.MkdirAll(filepath.Dir(targetPath), 0700); err != nil {
+	if err := fsutil.EnsurePrivateDir(filepath.Dir(targetPath)); err != nil {
 		return err
 	}
 
