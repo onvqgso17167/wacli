@@ -13,7 +13,7 @@ inputs:
   node-version:
     description: Node.js version to install when setup-node is true.
     required: false
-    default: "20"
+    default: "24"
   setup-pnpm:
     description: Whether to enable corepack and activate pnpm.
     required: false
