@@ -39,18 +39,9 @@
 ## Testing Guidelines
 - Every bug fix should ship with a regression test.
 - FTS-sensitive tests must run under `-tags sqlite_fts5`; non-FTS path tests must also pass without the tag.
-- Use `fake_wa_test.go` / table-driven tests for whatsmeow interaction; avoid hitting real WhatsApp in unit tests.
-- Integration tests that need a live account are opt-in and not part of the standard gate.
+- Use `fake_wa_test.go` / table-driven tests where practical.
 
-## Commit & Pull Request Guidelines
-- Follow Conventional Commits: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `security:`, `ci:` with an imperative summary.
-- Keep commits focused; avoid bundling unrelated changes.
-- PRs should state: what changed, why, how it was tested, and any new flags or env vars.
-- Run the full gate locally before opening a PR; CI runs the same commands.
-- New contributors: add `Co-authored-by:` trailers when building on their work.
-
-## Agent Notes
-- This repo uses `AGENTS.md` as its agent-instruction source; `CLAUDE.md` is explicitly ignored.
-- For agent-safe execution, pass `--read-only` (or set `WACLI_READONLY=1`) to prevent writes.
-- Prefer `--json` output for machine-readable parsing.
-- Do not add dependencies or change build tooling without confirming with the maintainer.
+## Personal Notes (fork)
+- My store dir is set via `WACLI_STORE_DIR=~/Documents/wacli-store` in my shell profile so I keep data outside `~/.local/state`.
+- I primarily use the `messages` and `search` commands; the `groups` and `presence` commands are less tested on my setup.
+- When debugging sync issues, `wacli doctor` is the first thing to run — it catches most session/db mismatches quickly.
