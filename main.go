@@ -27,7 +27,8 @@ WhatsApp messages via the WhatsApp Web multi-device API.
 
 It supports sending text messages, media files, and managing
 WhatsApp sessions from the terminal.`,
-	SilenceUsage: true,
+	SilenceUsage:  true,
+	SilenceErrors: true, // handle errors ourselves for cleaner output
 }
 
 // versionCmd prints the current version information
@@ -49,7 +50,7 @@ func init() {
 
 func main() {
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
 	}
 }
