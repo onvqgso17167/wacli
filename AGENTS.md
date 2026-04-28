@@ -39,9 +39,9 @@
 ## Testing Guidelines
 - Every bug fix should ship with a regression test.
 - FTS-sensitive tests must run under `-tags sqlite_fts5`; non-FTS path tests must also pass without the tag.
-- Use `fake_wa_test.go` / table-driven tests where practical.
+- Use `fake_wa_test.go` / table-driven tests where possible.
 
 ## Personal Notes (fork)
-- My store dir is set via `WACLI_STORE_DIR=~/Documents/wacli-data` in my shell profile so I keep data out of `~/.local/state`.
-- I primarily use this for archiving group chats; the `history` and `search` commands are the most relevant for my workflow.
-- Reminder: re-run `pnpm build` after pulling upstream changes — the FTS5 tag is easy to forget when using `go run` directly.
+- My store dir is set via `WACLI_STORE_DIR=~/Documents/wacli-data` in my shell profile so I keep data outside `~/.local/state`.
+- I primarily use the `messages` and `search` commands; less interested in groups/presence features.
+- Reminder: run `pnpm format` before every commit — CI will reject unformatted files.
