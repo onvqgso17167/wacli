@@ -41,7 +41,7 @@
 - FTS-sensitive tests must run under `-tags sqlite_fts5`; non-FTS path tests must also pass without the tag.
 - Use `fake_wa_test.go` / table-driven tests where practical.
 
-## Personal Notes (my fork)
-- I primarily use this on macOS; the store dir defaults to `~/.wacli` which is fine for my setup.
-- I keep a local `.env` file with `WACLI_STORE_DIR` pointing to a Dropbox-synced folder — handy for switching machines, but **never** run two instances simultaneously against the same store (lock file won't save you across network filesystems).
-- Reminder to self: run `pnpm format` before any commit or the format gate will fail and waste CI time.
+## Personal Notes (fork)
+- My store dir is set via `WACLI_STORE_DIR=~/Documents/wacli-data` in my shell profile so I keep data out of `~/.local/state`.
+- I primarily use this for archiving group chats; the `history` and `search` commands are the most relevant for my workflow.
+- Reminder: re-run `pnpm build` after pulling upstream changes — the FTS5 tag is easy to forget when using `go run` directly.
