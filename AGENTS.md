@@ -42,6 +42,6 @@
 - Use `fake_wa_test.go` / table-driven tests where possible.
 
 ## Personal Notes (fork)
-- My store dir is set via `WACLI_STORE_DIR=~/Documents/wacli-data` in my shell profile so I keep data outside `~/.local/state`.
-- I primarily use the `messages` and `search` commands; less interested in groups/presence features.
-- Reminder: run `pnpm format` before every commit — CI will reject unformatted files.
+- My store dir is set via `WACLI_STORE_DIR` pointing to `~/Documents/wacli-data` for easier backup.
+- I primarily use the `messages` and `search` commands; other commands are less tested in my environment.
+- TODO: explore adding a `--since` flag to `messages` for quick date-range filtering without full FTS.
