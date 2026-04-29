@@ -44,11 +44,20 @@ func init() {
 	rootCmd.AddCommand(versionCmd)
 
 	// Persistent flags available to all subcommands
+	// Using ~/.wacli/config.yaml as the default config location
 	rootCmd.PersistentFlags().StringP("config", "c", "", "config file path (default: $HOME/.wacli/config.yaml)")
+	// Default verbose to false; I usually run with -v only when debugging session issues
 	rootCmd.PersistentFlags().BoolP("verbose", "v", false, "enable verbose/debug output")
+	// Shorthand -V for version to avoid conflicts with -v (verbose)
+	rootCmd.Flags().BoolP("version", "V", false, "print version information and exit")
 }
 
 func main() {
+	// Check for -V/--version flag before executing subcommands
+	if v, _ := rootCmd.Flags().GetBool("version"); v {
+		fmt.Printf("wacli version %s (commit: %s, built: %s)\n", Version, Commit, Date)
+		return
+	}
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
