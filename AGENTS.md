@@ -39,9 +39,9 @@
 ## Testing Guidelines
 - Every bug fix should ship with a regression test.
 - FTS-sensitive tests must run under `-tags sqlite_fts5`; non-FTS path tests must also pass without the tag.
-- Use `fake_wa_test.go` / table-driven tests where possible.
+- Use `fake_wa_test.go` / table-driven tests where practical.
 
 ## Personal Notes (fork)
-- My store dir is set via `WACLI_STORE_DIR` pointing to `~/Documents/wacli-data` for easier backup.
-- I primarily use the `messages` and `search` commands; other commands are less tested in my environment.
-- TODO: explore adding a `--since` flag to `messages` for quick date-range filtering without full FTS.
+- My store dir is set via `WACLI_STORE_DIR=~/Documents/wacli-store` in my shell profile so I keep data outside `~/.local/state`.
+- I primarily use this for message search and history export; I don't use the `send` or `presence` commands.
+- When debugging sync issues, `wacli doctor` is the first thing to run — it catches most session/db problems quickly.
